@@ -12,7 +12,7 @@ import javax.servlet.ServletContextEvent
 class YammerMetricsGrailsPlugin {
 
 	// the plugin version
-    def version = "3.1.2-3"
+    def version = "3.1.2-4"
     // the version or versions of Grails the plugin is designed for
     def grailsVersion = "2.4.4 > *"
     // the other plugins this plugin depends on
@@ -109,10 +109,6 @@ See the source code documentation on Github for more details.
             }
         } else{
             println "Skipping Metrics Admin servlet mapping\n***"
-        }
-
-        if(application.config.metrics.jvm.enabled != false) {
-            Metrics.initJVMMetrics()
         }
     }
 
