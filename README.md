@@ -100,13 +100,12 @@ package org.grails
 class SomeService{
   @org.grails.plugins.metrics.groovy.annotation.Counted
   public void add() {
-    myCounter.inc();
     // do some stuff
   }
 }
 ```
 
-If no name is supplied, the timer will be named for the class and method.  In the above example the timer will be named ```org.grails.SomeService.serveTimer``
+If no name is supplied, the counter will be named for the class and method.  In the above example the timer will be named ```org.grails.SomeService.serveCounter```
 
 ## @Timed(name = "TimerName")
 
