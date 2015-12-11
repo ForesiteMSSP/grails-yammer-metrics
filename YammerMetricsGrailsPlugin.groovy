@@ -1,7 +1,7 @@
 import com.codahale.metrics.servlets.MetricsServlet
 import grails.util.Holders
-import org.grails.plugins.metrics.groovy.HealthCheckServletContextInitializer
-import org.grails.plugins.metrics.groovy.MetricsServletContextInitializer
+import org.grails.plugins.metrics.groovy.servlet.HealthCheckServletContextInitializer
+import org.grails.plugins.metrics.groovy.servlet.MetricsServletContextInitializer
 
 import javax.servlet.ServletContextEvent
 
@@ -11,7 +11,7 @@ import javax.servlet.ServletContextEvent
 class YammerMetricsGrailsPlugin {
 
 	// the plugin version
-    def version = "3.1.2"
+    def version = "3.1.2-1"
     // the version or versions of Grails the plugin is designed for
     def grailsVersion = "2.4.4 > *"
     // the other plugins this plugin depends on

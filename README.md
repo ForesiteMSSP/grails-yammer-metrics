@@ -67,6 +67,47 @@ Config.groovy:
 
 # Annotations
 
+## @Counted(name = "CounterName")
+
+This annotation can be added to any method you wish to be counted. @Counted uses sensible defaults to create an instance of
+com.codahale.metrics.core.Counter and the associated code to update it from within your method body.  If no name is 
+supplied, the counter will be named for the class and method.  In the example below the timer will be named ```org.grails.SomeService.serveCounter```
+
+Before
+```
+package org.grails
+class SomeService{
+  public void add() {}
+}
+```
+
+Counted the Java Way
+```
+package org.grails
+class SomeService{
+  private final Counter myCounter = Metrics.newCounter(SomeService.class, "myCounter");
+  
+  public void add() {
+    myCounter.inc();
+    // do some stuff
+  }
+}
+```
+
+Counted the Grails Way
+```
+package org.grails
+class SomeService{
+  @org.grails.plugins.metrics.groovy.annotation.Counted
+  public void add() {
+    myCounter.inc();
+    // do some stuff
+  }
+}
+```
+
+If no name is supplied, the timer will be named for the class and method.  In the above example the timer will be named ```org.grails.SomeService.serveTimer``
+
 ## @Timed(name = "TimerName")
 
 This annotation can be added to any method you wish to be timed.  @Timed uses sensible defaults to create an instance of
@@ -103,7 +144,7 @@ Timed the Grails Way
 ```
 package org.grails
 class SomeService{
-  @org.grails.plugins.metrics.groovy.Timed
+  @org.grails.plugins.metrics.groovy.annotation.Timed
   public String serve(def foo, def bar) {
     return "OK"
   }
@@ -148,7 +189,7 @@ Metered the Grails Way
 package org.grails
 class SomeService{
 
-  @org.grails.plugins.metrics.groovy.Metered
+  @org.grails.plugins.metrics.groovy.annotation.Metered
   public String serve(def foo, def bar) {
     return "OK"
   }

@@ -1,8 +1,9 @@
-package org.grails.plugins.metrics.groovy
+package org.grails.plugins.metrics.groovy.servlet
 
 import com.codahale.metrics.MetricRegistry
 import com.codahale.metrics.servlets.MetricsServlet
 import grails.util.Holders
+import org.grails.plugins.metrics.groovy.Metrics
 
 import java.util.concurrent.TimeUnit
 

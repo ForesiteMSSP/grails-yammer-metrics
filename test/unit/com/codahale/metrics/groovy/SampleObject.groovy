@@ -1,8 +1,8 @@
 package com.codahale.metrics.groovy
 
 import org.grails.plugins.metrics.groovy.Metrics
-import org.grails.plugins.metrics.groovy.Metered
-import org.grails.plugins.metrics.groovy.Timed
+import org.grails.plugins.metrics.groovy.annotation.Metered
+import org.grails.plugins.metrics.groovy.annotation.Timed
 
 class SampleObject {
 

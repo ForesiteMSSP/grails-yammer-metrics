@@ -1,4 +1,4 @@
-package org.grails.plugins.metrics.groovy
+package org.grails.plugins.metrics.groovy.annotation
 
 import org.codehaus.groovy.transform.GroovyASTTransformationClass
 
@@ -13,8 +13,8 @@ import java.lang.annotation.Target
  */
 @Retention(RetentionPolicy.SOURCE)
 @Target([ElementType.METHOD])
-@GroovyASTTransformationClass(["org.grails.plugins.metrics.groovy.ast.YTimedASTTransformation"])
-public @interface Timed {
+@GroovyASTTransformationClass(["org.grails.plugins.metrics.groovy.ast.YMeteredASTTransformation"])
+public @interface Metered {
     String name() default "";
 
 }
