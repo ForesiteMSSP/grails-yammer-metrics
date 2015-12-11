@@ -7,6 +7,7 @@ to Coda Hale's metrics package from Grails applications.  For detailed informati
 The plugin packages the following metrics modules:
    
    * metrics-core
+   * metrics-graphite
    * metrics-healthchecks
    * metrics-jvm
    * metrics-servlets

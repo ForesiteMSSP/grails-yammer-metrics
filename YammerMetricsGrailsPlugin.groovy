@@ -12,7 +12,7 @@ import javax.servlet.ServletContextEvent
 class YammerMetricsGrailsPlugin {
 
 	// the plugin version
-    def version = "3.1.2-2"
+    def version = "3.1.2-3"
     // the version or versions of Grails the plugin is designed for
     def grailsVersion = "2.4.4 > *"
     // the other plugins this plugin depends on

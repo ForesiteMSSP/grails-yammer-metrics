@@ -1,6 +1,8 @@
 package org.grails.plugins.metrics.groovy
 
 import com.codahale.metrics.*
+import com.codahale.metrics.graphite.Graphite
+import com.codahale.metrics.graphite.GraphiteReporter
 import com.codahale.metrics.jvm.BufferPoolMetricSet
 import com.codahale.metrics.jvm.ClassLoadingGaugeSet
 import com.codahale.metrics.jvm.FileDescriptorRatioGauge
@@ -126,6 +128,23 @@ class Metrics {
                 .convertDurationsTo(durationUnit)
                 .build();
         reporter.start();
+        return reporter
+    }
+
+    /**
+     * Convenience method for starting a Graphite reporter exposing the default registries.
+     */
+    static GraphiteReporter startGraphiteReporter(String host, int port, String prefix, long frequency, TimeUnit frequencyUnit, TimeUnit rateUnit = TimeUnit.SECONDS, TimeUnit durationUnit = TimeUnit.MILLISECONDS) {
+        final Graphite graphite = new Graphite(host, port)
+        final GraphiteReporter reporter = GraphiteReporter
+                .forRegistry(registry)
+                .convertRatesTo(rateUnit)
+                .convertDurationsTo(durationUnit)
+                .prefixedWith(prefix)
+                .build(graphite)
+
+        reporter.start(frequency, frequencyUnit)
+
         return reporter
     }
 

@@ -48,6 +48,7 @@ grails.project.dependency.resolution = {
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes eg.
 		runtime "io.dropwizard.metrics:metrics-core:${metrics.core.version}"
+		runtime "io.dropwizard.metrics:metrics-graphite:${metrics.core.version}"
 		runtime "io.dropwizard.metrics:metrics-jvm:${metrics.core.version}"
 		runtime "io.dropwizard.metrics:metrics-servlets:${metrics.core.version}"
     }
