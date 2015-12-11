@@ -1,10 +1,17 @@
 package org.grails.plugins.metrics.groovy
 
 import com.codahale.metrics.*
+import com.codahale.metrics.jvm.BufferPoolMetricSet
+import com.codahale.metrics.jvm.ClassLoadingGaugeSet
+import com.codahale.metrics.jvm.FileDescriptorRatioGauge
+import com.codahale.metrics.jvm.GarbageCollectorMetricSet
+import com.codahale.metrics.jvm.MemoryUsageGaugeSet
+import com.codahale.metrics.jvm.ThreadStatesGaugeSet
 import com.codahale.metrics.servlets.MetricsServlet
 import grails.util.Holders
 import org.codehaus.groovy.reflection.ReflectionUtils
 
+import java.lang.management.ManagementFactory
 import java.util.concurrent.TimeUnit
 
 class Metrics {
@@ -96,6 +103,17 @@ class Metrics {
      */
     static MetricRegistry getRegistry() {
         return SharedMetricRegistries.getOrCreate(REGISTRY_NAME)
+    }
+
+    static void initJVMMetrics() {
+        MetricRegistry r = registry
+        r.register("jvm.attribute", new JvmAttributeGaugeSet())
+        r.register("jvm.buffers", new BufferPoolMetricSet(ManagementFactory.getPlatformMBeanServer()))
+        r.register("jvm.classloader", new ClassLoadingGaugeSet())
+        r.register("jvm.filedescriptor", new FileDescriptorRatioGauge())
+        r.register("jvm.gc", new GarbageCollectorMetricSet())
+        r.register("jvm.memory", new MemoryUsageGaugeSet())
+        r.register("jvm.threads", new ThreadStatesGaugeSet())
     }
 
     /**

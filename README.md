@@ -8,6 +8,7 @@ The plugin packages the following metrics modules:
    
    * metrics-core
    * metrics-healthchecks
+   * metrics-jvm
    * metrics-servlets
 
 # Usage
@@ -17,6 +18,7 @@ This plugin:
    * Wires the metrics AdminServlet to the /metrics endpoint
    * Creates a global MetricsRegistry and HealthCheckRegistry for you application and exposes them through the /metrics endpoint
    * Adds annotations to easily use meters and timers around groovy methods
+   * Exposes the metrics of the JVM  
 
 ## The AdminServlet
 
@@ -47,6 +49,23 @@ changed in Config.groovy with:
     metrics.servlet.durationUnit = "hours"
 
 Any value supported by ```java.util.concurrent.TimeUnit``` are valid for these values.  Case does not matter.
+
+
+## JVM 
+
+The metrics exposed :
+
+   * Attribute
+   * Buffers
+   * ClassLoader
+   * FilesDescriptor 
+   * GarbageCollector
+   * Memory
+   * Threads
+
+This injection can be disabled in Config.groovy with : 
+
+    application.config.metrics.jvm.enabled = false
 
 
 # Global Registries

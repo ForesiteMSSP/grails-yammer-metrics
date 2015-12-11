@@ -1,5 +1,6 @@
 import com.codahale.metrics.servlets.MetricsServlet
 import grails.util.Holders
+import org.grails.plugins.metrics.groovy.Metrics
 import org.grails.plugins.metrics.groovy.servlet.HealthCheckServletContextInitializer
 import org.grails.plugins.metrics.groovy.servlet.MetricsServletContextInitializer
 
@@ -11,7 +12,7 @@ import javax.servlet.ServletContextEvent
 class YammerMetricsGrailsPlugin {
 
 	// the plugin version
-    def version = "3.1.2-1"
+    def version = "3.1.2-2"
     // the version or versions of Grails the plugin is designed for
     def grailsVersion = "2.4.4 > *"
     // the other plugins this plugin depends on
@@ -108,6 +109,10 @@ See the source code documentation on Github for more details.
             }
         } else{
             println "Skipping Metrics Admin servlet mapping\n***"
+        }
+
+        if(application.config.metrics.jvm.enabled != false) {
+            Metrics.initJVMMetrics()
         }
     }
 
